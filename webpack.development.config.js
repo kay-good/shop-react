@@ -12,7 +12,10 @@ const version = 'development'
 const config = {
   devtool: 'cheap-module-eval-source-map',
 
-  entry: ['./main.js'],
+  entry: [
+    'webpack-dev-server/client?http://localhost:8087',
+    'webpack/hot/only-dev-server',
+    './main.js'],
   resolve: {
     alias: {
       d3: 'd3/index.js',
@@ -28,7 +31,7 @@ const config = {
   mode: 'development',
   context: resolve(__dirname, 'client'),
   devServer: {
-    hot: false,
+    hot: true,
     contentBase: resolve(__dirname, 'dist/assets'),
     watchContentBase: true,
     host: 'localhost',

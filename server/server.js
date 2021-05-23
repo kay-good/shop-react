@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
+import axios from 'axios'
 
 import cookieParser from 'cookie-parser'
 import config from './config'
@@ -31,6 +32,8 @@ let connections = []
 const port = process.env.PORT || 8090
 const server = express()
 
+
+
 const middleware = [
   cors(),
   express.static(path.resolve(__dirname, '../dist/assets')),
@@ -40,6 +43,26 @@ const middleware = [
 ]
 
 middleware.forEach((it) => server.use(it))
+
+
+server.get('/api/v1/data/', (req, res) => {
+  axios('https://raw.githubusercontent.com/ovasylenko/skillcrcuial-ecommerce-test-data/master/data.json')
+  .then((response) => response.data) 
+  .then(text => {  
+    res.json(text)
+  }).catch(() => {console.log('wat2')}) 
+
+} )
+
+server.get('/api/v1/currency/', (req, res) => {
+  axios('http://api.exchangeratesapi.io/v1/latest?access_key=ef52081f69df9c164ad181d597532612')
+  .then((response) => response.data) 
+  .then(text => {  
+    res.json(text)
+  }).catch(() => {console.log('wat')}) 
+  
+} )
+
 
 server.use('/api/', (req, res) => {
   res.status(404)
