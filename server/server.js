@@ -49,7 +49,7 @@ server.get('/api/v1/data/', (req, res) => {
   axios('https://raw.githubusercontent.com/ovasylenko/skillcrcuial-ecommerce-test-data/master/data.json')
   .then((response) => response.data) 
   .then(text => {  
-    res.json(text)
+    return res.json(text)
   }).catch(() => {console.log('wat2')}) 
 
 } )

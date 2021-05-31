@@ -9,7 +9,7 @@ import { getList } from '../redux/reducers/list'
 const Dummy = () => {
   const list = useSelector(s => s.list.list)
   const dispatch = useDispatch()
-  const jsonlist = JSON.stringify(list)
+  
 
     React.useEffect(() => {  
       setTimeout (() => {
@@ -30,7 +30,7 @@ const Dummy = () => {
         <div className="bg-indigo-200 text-white font-bold rounded-lg border shadow-lg p-2 w-2/6 m-2 inline-block">
           <div className="block origin-top bg-gray-100 text-black h-8 place-content-center">44</div>
           <div className="flex items-center justify-between">
-            <div className="flex items-center h-24 w-24">picture{list[1]}1</div>
+            <div className="flex items-center h-24 w-24">picture</div>
             <div className="px-3 py-2 rounded-md ">+=</div>
           </div>
           <div className="flex items-center justify-between">
@@ -39,8 +39,8 @@ const Dummy = () => {
             <div className="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900">1</div>
           </div>
         </div>
+        <div>{list[1].title}</div>
         
-        <div>{jsonlist}</div>  
       </div>
     </div>
   )
