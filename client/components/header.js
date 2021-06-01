@@ -14,21 +14,21 @@ const Header = () => {
   return (
       <nav  className="flex items-center justufy-between bg-blue-800 font-bold text-white h-12 w-screen fixed">
         <div>
-          <button type="button">
+          <button type="button" className="px-4 py-2">
             usd
           </button>
-          <button type="button">
+          <button type="button" className="px-4 py-2">
             eur
           </button>
-          <button type="button">
+          <button type="button" className="px-4 py-2">
             cad
           </button>
         </div>
         <div>
-          <button type="button" id="sort-price">
+          <button type="button" id="sort-price" className="px-4 py-2">
             sort by price
           </button>
-          <button type="button" id="sort-name">
+          <button type="button" id="sort-name" className="px-4 py-2">
             sort by name
           </button>
         </div>

@@ -11,8 +11,8 @@ export default (state = initialState, action) => {
     case UPDATE_LIST: {
       return { ...state, list: action.list }
     }
-      default:
-          return state
+    default:
+      return state
   }
 
 }
@@ -20,6 +20,7 @@ export default (state = initialState, action) => {
 export function getList() {
   return (dispatch) => {
     axios.get('/api/v1/data/').then(( { data } ) => (dispatch({ type: UPDATE_LIST, list: data})))
+    .catch(() => dispatch({ type: UPDATE_LIST, list: []}))
   }
 
 }
