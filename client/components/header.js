@@ -1,6 +1,9 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+//  import { useSelector, useDispatch } from 'react-redux'
 //  import { getCurrencyCAD, getCurrencyEUR, getCurrencyUSD } from '../redux/reducers/currency'
+
+import { history } from '../redux'
 
 const Header = () => {
   //  const [toggled, toggle] = useState(false)
@@ -9,10 +12,41 @@ const Header = () => {
 
 
   return (
-      <nav className="flex items-center justufy-center bg-blue-800 font-bold text-white h-12 w-screen fixed">
-        <Link to="/">
-          bandit shop
-        </Link>
+      <nav  className="flex items-center justufy-between bg-blue-800 font-bold text-white h-12 w-screen fixed">
+        <div>
+          <button type="button">
+            usd
+          </button>
+          <button type="button">
+            eur
+          </button>
+          <button type="button">
+            cad
+          </button>
+        </div>
+        <div>
+          <button type="button" id="sort-price">
+            sort by price
+          </button>
+          <button type="button" id="sort-name">
+            sort by name
+          </button>
+        </div>
+        <div>
+          <Link to="/">
+            <div id="brand-name" className="px-4 py-2">
+              bandit shop
+            </div>
+          </Link>
+        </div>
+        <div>
+          <button type="button" id="order-count" onClick={() => history.push('/basket')}>
+            basket
+          </button>
+          <div>
+            0
+          </div>
+        </div>
       </nav>
   )
 }
