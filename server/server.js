@@ -49,16 +49,17 @@ server.get('/api/v1/data/', (req, res) => {
   axios('https://raw.githubusercontent.com/ovasylenko/skillcrcuial-ecommerce-test-data/master/data.json')
   .then((response) => response.data) 
   .then(text => {  
-    return res.json(text)
+    const filteredText = text.filter((it, index) => index < 30)
+    return res.json(filteredText)
   }).catch(() => {console.log('wat2')}) 
 
 } )
 
 server.get('/api/v1/currency/', (req, res) => {
   axios('http://api.exchangeratesapi.io/v1/latest?access_key=ef52081f69df9c164ad181d597532612')
-  .then((response) => response.data) 
+  .then((response) => response.data.rates) 
   .then(text => {  
-    res.json(text)
+    return res.json(text)
   }).catch(() => {console.log('wat')}) 
   
 } )

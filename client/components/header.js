@@ -12,7 +12,7 @@ const Header = () => {
 
 
   return (
-      <nav  className="flex items-center justufy-between bg-blue-800 font-bold text-white h-12 w-screen fixed">
+      <nav  className="flex items-center justufy-between bg-blue-800 font-bold text-white h-12 w-screen">
         <div>
           <button type="button" className="px-4 py-2">
             usd
