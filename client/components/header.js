@@ -1,26 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-//  import { useSelector, useDispatch } from 'react-redux'
-//  import { getCurrencyCAD, getCurrencyEUR, getCurrencyUSD } from '../redux/reducers/currency'
+import { useDispatch } from 'react-redux'
+import { getCurrencyCAD, getCurrencyEUR, getCurrencyUSD } from '../redux/reducers/list'
 
 import { history } from '../redux'
 
 const Header = () => {
   //  const [toggled, toggle] = useState(false)
-  //  const currencyName = useSelector((s) => s.currency.name)
-  //  const dispatch = useDispatch()
+  //  const currencyValue = useSelector((s) => s.list.currency.value)
+  const dispatch = useDispatch()
 
 
   return (
       <nav  className="flex items-center justufy-between bg-blue-800 font-bold text-white h-12 w-screen">
         <div>
-          <button type="button" className="px-4 py-2">
+          <button type="button" className="px-4 py-2" onClick={() => dispatch(getCurrencyUSD())}>
             usd
           </button>
-          <button type="button" className="px-4 py-2">
+          <button type="button" className="px-4 py-2" onClick={() => dispatch(getCurrencyEUR())}>
             eur
           </button>
-          <button type="button" className="px-4 py-2">
+          <button type="button" className="px-4 py-2" onClick={() => dispatch(getCurrencyCAD())}>
             cad
           </button>
         </div>
