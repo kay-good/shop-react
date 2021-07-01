@@ -55,6 +55,34 @@ server.get('/api/v1/data/', (req, res) => {
 
 } )
 
+server.get('/api/v1/data/:sorting', (req, res) => {
+  const { sorting } = req.params
+  axios('https://raw.githubusercontent.com/ovasylenko/skillcrcuial-ecommerce-test-data/master/data.json')
+  .then((response) => response.data) 
+  .then(text => {  
+    const sortedText = text.sort((a, b) => {
+      switch (sorting) {
+        case 'a-z': {
+          return a.title.localeCompare(b.title)
+        }
+        case 'z-a': {
+          return b.title.localeCompare(a.title)
+        }
+        case '1-9': {
+          return a.price - b.price
+        }
+        case '9-1': {
+          return b.price - a.price
+        }
+        default:
+          return b.price - a.price
+      }
+    })
+    const filteredText = sortedText.filter((it, index) => index < 30)
+    return res.json(filteredText)
+  }).catch(() => {console.log('wat3')}) 
+})
+
 server.get('/api/v1/currency/', (req, res) => {
   axios('http://api.exchangeratesapi.io/v1/latest?access_key=ef52081f69df9c164ad181d597532612')
   .then((response) => response.data.rates) 

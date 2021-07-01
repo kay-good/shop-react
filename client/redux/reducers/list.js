@@ -70,3 +70,10 @@ export function getCurrencyUSD() {
     axios.get('/api/v1/currency/').then(({data}) => (dispatch({ type: UPDATE_CURRENCY_USD, list: data})))
   }
 }
+
+export function getSorted(sort) {
+  return (dispatch) => {
+    axios.get(`/api/v1/data/${sort}`).then(( { data } ) => (dispatch({ type: UPDATE_LIST, list: data})))
+    .catch(() => dispatch({ type: UPDATE_LIST, list: []}))
+  }
+}

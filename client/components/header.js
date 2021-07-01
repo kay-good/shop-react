@@ -1,15 +1,55 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { getCurrencyCAD, getCurrencyEUR, getCurrencyUSD } from '../redux/reducers/list'
+import { getCurrencyCAD, getCurrencyEUR, getCurrencyUSD, getSorted } from '../redux/reducers/list'
 
 import { history } from '../redux'
 
 const Header = () => {
-  //  const [toggled, toggle] = useState(false)
-  //  const currencyValue = useSelector((s) => s.list.currency.value)
+  const [prevSorting, setSorting] = React.useState(0)
+  const [titleToMax, setTitleToMax] = React.useState(true)
+  const [priceToMax, setPriceToMax] = React.useState(true)
+  
   const dispatch = useDispatch()
 
+
+  function doSorting(sortType) {
+    // if ((sortType === 'title')) {
+    //   if(!(prevSorting)) {
+    //     console.log('name')
+    //     dispatch(getSorted( titleToMax ?'a-z' : 'z-a' ))
+    //   }
+      
+    // }
+    if ( !prevSorting && sortType === 'title') {
+      dispatch(getSorted( titleToMax ?'a-z' : 'z-a' ))
+      setSorting('title')
+      
+    }
+    if ( !prevSorting && sortType === 'price') {
+      dispatch(getSorted( priceToMax ? '1-9' : '9-1' ))
+      setSorting('price')
+    }
+    if ( prevSorting === 'title' && sortType === 'title') {
+      setTitleToMax(!setTitleToMax)
+      dispatch(getSorted( titleToMax ?'a-z' : 'z-a' ))
+      setSorting('title')
+    }
+    if ( prevSorting === 'title' && sortType === 'price') {
+      dispatch(getSorted( priceToMax ? '1-9' : '9-1' ))
+      setSorting('price')
+    }
+    if ( prevSorting  === 'price' && sortType === 'title') {
+      dispatch(getSorted( titleToMax ?'a-z' : 'z-a' ))
+      setSorting('title')
+    }
+    if ( prevSorting === 'price' && sortType === 'price') {
+      setPriceToMax(!priceToMax)
+      dispatch(getSorted( priceToMax ? '1-9' : '9-1' ))
+      setSorting('price')
+    }
+    
+  }
 
   return (
       <nav  className="flex items-center justufy-between bg-blue-800 font-bold text-white h-12 w-screen">
@@ -25,10 +65,10 @@ const Header = () => {
           </button>
         </div>
         <div>
-          <button type="button" id="sort-price" className="px-4 py-2">
+          <button type="button" id="sort-price" className="px-4 py-2" onClick={() => doSorting('price')}>
             sort by price
           </button>
-          <button type="button" id="sort-name" className="px-4 py-2">
+          <button type="button" id="sort-name" className="px-4 py-2" onClick={() => doSorting('title')}>
             sort by name
           </button>
         </div>

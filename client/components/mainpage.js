@@ -21,7 +21,7 @@ const Dummy = () => {
     <div>
       <Head title="Hello" />
       <Header />
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex flex-wrap items-center justify-center h-screen">
         
         {list.map((item) => {
           return <div key={item.id}>
