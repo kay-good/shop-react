@@ -22,24 +22,31 @@ const Header = () => {
       
     // }
     if ( !prevSorting && sortType === 'title') {
+      setTitleToMax(!titleToMax)
       dispatch(getSorted( titleToMax ?'a-z' : 'z-a' ))
       setSorting('title')
       
     }
     if ( !prevSorting && sortType === 'price') {
+      setPriceToMax(!priceToMax)
       dispatch(getSorted( priceToMax ? '1-9' : '9-1' ))
       setSorting('price')
     }
     if ( prevSorting === 'title' && sortType === 'title') {
-      setTitleToMax(!setTitleToMax)
+      setTitleToMax(!titleToMax)
       dispatch(getSorted( titleToMax ?'a-z' : 'z-a' ))
       setSorting('title')
+      console.log('name', prevSorting, sortType)
     }
     if ( prevSorting === 'title' && sortType === 'price') {
+      setPriceToMax(!priceToMax)
+      setTitleToMax(!titleToMax)
       dispatch(getSorted( priceToMax ? '1-9' : '9-1' ))
       setSorting('price')
     }
     if ( prevSorting  === 'price' && sortType === 'title') {
+      setPriceToMax(!priceToMax)
+      setTitleToMax(!titleToMax)
       dispatch(getSorted( titleToMax ?'a-z' : 'z-a' ))
       setSorting('title')
     }
