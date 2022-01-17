@@ -36,7 +36,7 @@ const Header = () => {
       setTitleToMax(!titleToMax)
       dispatch(getSorted( titleToMax ?'a-z' : 'z-a' ))
       setSorting('title')
-      console.log('name', prevSorting, sortType)
+      // console.log('name', prevSorting, sortType)
     }
     if ( prevSorting === 'title' && sortType === 'price') {
       setPriceToMax(!priceToMax)

@@ -1,10 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { addItem } from '../redux/reducers/basket'
 
 
 const Itemcard = (props) => {
   const currency = useSelector(s => s.list.currency.name)
   const currencyValue = useSelector((s) => s.list.currency.value)
+
+  const dispatch = useDispatch()
 
   return (
     <div className="card">
@@ -16,7 +19,7 @@ const Itemcard = (props) => {
           <div className="card__title">{props.item.title}</div>
           <div className="card__product-amount">amount</div>
           <button 
-            type="button">
+            type="button" className="px-4 py-2" onClick={() => dispatch(addItem(props.item.id))}>
                 add
           </button>
         </div>

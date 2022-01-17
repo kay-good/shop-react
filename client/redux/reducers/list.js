@@ -10,13 +10,14 @@ const initialState = {
   currency: {
     name: 'EUR',
     value: 1
-  }
+  },
+  sorting: ''
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_LIST: {
-      return { ...state, list: action.list }
+      return { ...state, list: action.list, sorting: action.sorting }
     }
     case UPDATE_CURRENCY_CAD: {
       return {
@@ -50,7 +51,7 @@ export default (state = initialState, action) => {
 
 export function getList() {
   return (dispatch) => {
-    axios.get('/api/v1/data/').then(( { data } ) => (dispatch({ type: UPDATE_LIST, list: data})))
+    axios.get('/api/v1/data/').then(( { data } ) => (dispatch({ type: UPDATE_LIST, list: data, sorting: ''})))
     .catch(() => dispatch({ type: UPDATE_LIST, list: []}))
   }
 }
@@ -73,7 +74,7 @@ export function getCurrencyUSD() {
 
 export function getSorted(sort) {
   return (dispatch) => {
-    axios.get(`/api/v1/data/${sort}`).then(( { data } ) => (dispatch({ type: UPDATE_LIST, list: data})))
+    axios.get(`/api/v1/data/${sort}`).then(( { data } ) => (dispatch({ type: UPDATE_LIST, list: data, sorting: sort})))
     .catch(() => dispatch({ type: UPDATE_LIST, list: []}))
   }
 }
