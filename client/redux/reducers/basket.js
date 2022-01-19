@@ -32,19 +32,19 @@ function getBusketSort(sort, array) {
   export default (state = initialState, action) => {
     switch (action.type) {
       case ADD_ITEM: {
-        const item = {...action.item}
+        //   const item = action.item
         let result = state.list.reduce((acc, rec, index) => {
-          if (rec.id === item.id) {
+          if (rec.id === action.item.id) {
             return [...acc, {...rec, "count": rec.count + 1}]
           }
-          if (index === state.list.length - 1 && !(acc.find(it => it.id === item.id))) {
+          if (index === state.list.length - 1 && !(acc.find(it => it.id === action.item.id))) {
             if (!rec.id) {
-              return  [{...item, "count": 1}]
+              return  [{...action.item, "count": 1}]
             }
-            return [...acc, rec, {...item, "count": 1}]
+            return [...acc, rec, {...action.item, "count": 1}]
           }
          return [...acc, rec]
-        }, ['']
+        }, []
         )
         if (state.sorting) {
           result = getBusketSort(state.sorting, result)
@@ -63,7 +63,7 @@ function getBusketSort(sort, array) {
           }
           
          return [...acc, rec]
-        }, ['']) //  решить позжн
+        }, []) //  решить позжн
         return { ...state, list: result, sorting: action.sorting }
       }
      
@@ -78,7 +78,7 @@ function getBusketSort(sort, array) {
       const store = getState()
       const { list , sorting } = store.list
       
-      const data = list.filter( it => it.id === id )
+      const data = list.filter( it => it.id === id )[0]
       
       dispatch({ type: ADD_ITEM, item: data, sorting})
     }
