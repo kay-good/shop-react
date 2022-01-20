@@ -20,6 +20,11 @@ const Dummy = () => {
                 <Basketcard item={item}/>
               </div>
             })}
+              <div>total {
+                list.reduce((acc, rec) => {
+                  return acc + (rec.price * rec.count)
+                }, 0)
+                }</div>
           </div>
         </div>
 

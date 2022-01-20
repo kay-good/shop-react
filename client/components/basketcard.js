@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { deleteItem } from '../redux/reducers/basket'
 
 
-const Itemcard = (props) => {
+const Basketcard = (props) => {
   const currency = useSelector(s => s.list.currency.name)
   const currencyValue = useSelector((s) => s.list.currency.value)
   
@@ -18,11 +18,11 @@ const Itemcard = (props) => {
           <div className="product__price">{currencyValue === 1 ? props.item.price : (props.item.price * currencyValue).toFixed(2)}</div>
           <div className="currency">{currency}</div>
           <div className="product__title">{props.item.title}</div>
-          <div className="product__amount">amount</div>
-          <div className="product__total_price">amount</div>
+          <div className="product__amount">amount {props.item.count}</div>
+          <div className="product__total_price">total price {currencyValue === 1 ? props.item.count * props.item.price : (props.item.count * props.item.price * currencyValue).toFixed(2) }</div>
           <button 
             type="button" className="product__remove px-4 py-2" onClick={() => dispatch(deleteItem(props.item.id))}>
-                delite
+                delete
           </button>
         </div>
       </div>
@@ -30,6 +30,6 @@ const Itemcard = (props) => {
   )
 }
 
-Itemcard.propTypes = {}
+Basketcard.propTypes = {}
 
-export default React.memo(Itemcard)
+export default React.memo(Basketcard)

@@ -53,10 +53,9 @@ function getBusketSort(sort, array) {
       }
 
       case DELETE_ITEM: {
-        const item = {...action.item}
         const result = state.list.reduce((acc, rec) => {
     
-          if (rec.id === item.id) {
+          if (rec.id === action.item) {
             if (rec.count <= 1) { return [...acc] }
             
             return [...acc, {...rec, "count": rec.count - 1}]
@@ -64,7 +63,7 @@ function getBusketSort(sort, array) {
           
          return [...acc, rec]
         }, []) //  решить позжн
-        return { ...state, list: result, sorting: action.sorting }
+        return { ...state, list: result.length !== 0 ? result : ['']  }
       }
      
       default:
