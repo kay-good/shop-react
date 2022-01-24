@@ -6,7 +6,7 @@ import Header from './header'
 import Basketcard from './basketcard'
 
 const Dummy = () => {
-  const list = useSelector(s => s.basket.list)
+  const { list } = useSelector(s => s.basket)
 
   return (
     <div>

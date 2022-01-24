@@ -2,6 +2,7 @@
 
 const ADD_ITEM = 'testapp/list/ADD_ITEM'
 const DELETE_ITEM = 'testapp/list/DELETE_ITEM'
+const SORTING_BUSKET = 'testapp/list/SORTING_BUSKET'
 
 const initialState = {
     sorting: '',
@@ -65,6 +66,14 @@ function getBusketSort(sort, array) {
         }, []) //  решить позжн
         return { ...state, list: result.length !== 0 ? result : ['']  }
       }
+
+      case SORTING_BUSKET: {
+        if (state.list.length <= 1) {
+          return { ...state , sorting: action.sorting}
+        }
+        const result = getBusketSort(action.sorting, state.list)
+        return { ...state, list: result, sorting: action.sorting}
+      }
      
       default:
         return state
@@ -87,5 +96,12 @@ function getBusketSort(sort, array) {
     return (dispatch) => {
       
       dispatch({ type: DELETE_ITEM, item: id})
+    }
+  }
+
+  export function sortingBusket(sorting) {
+    return (dispatch) => {
+      
+      dispatch({ type: SORTING_BUSKET, sorting})
     }
   }

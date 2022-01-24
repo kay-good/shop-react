@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {sortingBusket} from './basket'
 
 const UPDATE_LIST = 'testapp/list/UPDATE_LIST'
 const UPDATE_CURRENCY_CAD = 'testapp/currency/UPDATE_CURRENCY_CAD'
@@ -74,6 +75,7 @@ export function getCurrencyUSD() {
 
 export function getSorted(sort) {
   return (dispatch) => {
+    dispatch(sortingBusket(sort))
     axios.get(`/api/v1/data/${sort}`).then(( { data } ) => (dispatch({ type: UPDATE_LIST, list: data, sorting: sort})))
     .catch(() => dispatch({ type: UPDATE_LIST, list: []}))
   }
