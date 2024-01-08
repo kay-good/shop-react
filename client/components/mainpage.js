@@ -21,10 +21,10 @@ const Dummy = () => {
     <div>
       <Head title="Hello" />
       <Header />
-      <div className="flex flex-wrap items-center justify-center h-screen">
+      <div className="flex flex-wrap justify-center container mx-auto px-10 py-10">
         
         {list.map((item) => {
-          return <div key={item.id}>
+          return <div key={item.id} className="card w-1/4">
             <Itemcard item={item}/>
           </div>
         })}

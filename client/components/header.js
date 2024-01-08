@@ -59,40 +59,38 @@ const Header = () => {
   }
 
   return (
-      <nav  className="flex items-center justufy-between bg-blue-800 font-bold text-white h-12 w-screen">
+      <nav  className="flex items-center justufy-between bg-black font-bold text-white h-20 border-b-2 border-black">
+        <Link to="/" className="px-4 py-2 bg-white h-full text-black uppercase flex items-center">
+            <div>vans-shop</div>
+        </Link>
         <div>
-          <button type="button" className="px-4 py-2" onClick={() => dispatch(getCurrencyUSD())}>
-            usd
-          </button>
-          <button type="button" className="px-4 py-2" onClick={() => dispatch(getCurrencyEUR())}>
-            eur
-          </button>
-          <button type="button" className="px-4 py-2" onClick={() => dispatch(getCurrencyCAD())}>
-            cad
-          </button>
+          <div className="pl-10">
+            <button type="button" className="px-4 py-2 hover:text-yellow-400 duration-500" onClick={() => dispatch(getCurrencyUSD())}>
+              usd
+            </button>
+            <button type="button" className="px-4 py-2 hover:text-yellow-400 duration-500" onClick={() => dispatch(getCurrencyEUR())}>
+              eur
+            </button>
+            <button type="button" className="px-4 py-2 hover:text-yellow-400 duration-500" onClick={() => dispatch(getCurrencyCAD())}>
+              cad
+            </button>
+            <button type="button" id="sort-price" className="px-4 py-2 hover:text-yellow-400 duration-500" onClick={() => doSorting('price')}>
+              by price
+            </button>
+            <button type="button" id="sort-name" className="px-4 py-2 hover:text-yellow-400 duration-500" onClick={() => doSorting('title')}>
+              by name
+            </button>
+          </div>
         </div>
-        <div>
-          <button type="button" id="sort-price" className="px-4 py-2" onClick={() => doSorting('price')}>
-            sort by price
-          </button>
-          <button type="button" id="sort-name" className="px-4 py-2" onClick={() => doSorting('title')}>
-            sort by name
-          </button>
-        </div>
-        <div>
-          <Link to="/">
-            <div id="brand-name" className="px-4 py-2">
-              bandit shop
-            </div>
-          </Link>
-        </div>
-        <div>
-          <button type="button" id="order-count" onClick={() => history.push('/basket')}>
-            basket
-          </button>
-          <div>
+        <div className="ml-auto mr-0 flex items-center pr-10 hover:text-yellow-400">
+          <div className="px-2 py-1 bg-white text-black rounded-md">
             0
           </div>
+          <button type="button" id="order-count" className="px-4 py-2" onClick={() => history.push('/basket')}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+            </svg>
+          </button>
         </div>
       </nav>
   )

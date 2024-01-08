@@ -10,6 +10,7 @@ import axios from 'axios'
 import cookieParser from 'cookie-parser'
 import config from './config'
 import Html from '../client/html'
+//  import { readFile } from 'fs'
 
 const Root = () => ''
 
@@ -92,6 +93,18 @@ server.get('/api/v1/currency/', (req, res) => {
   
 } )
 
+// server.post('/api/v1/userslog', (req, res) => {
+//   readFile(`${__dirname}/logs.json`, { encoding: "utf8" })
+//   .then(text => {
+//     const jsonText = JSON.parse(text)
+
+//   })
+//   .catch(() => {
+//     const text = [{user: 0, action: req.body.action, direction: req.body.direction, time: req.body.time}]
+//     writeFile(`${__dirname}/logs.json`, JSON.stringify(text), { encoding: "utf8" });
+  
+//   })
+// })
 
 server.use('/api/', (req, res) => {
   res.status(404)
