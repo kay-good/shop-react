@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteItem } from '../redux/reducers/basket'
+import { deleteItem, addItem } from '../redux/reducers/basket'
 
 
 const Basketcard = (props) => {
@@ -25,8 +25,8 @@ const Basketcard = (props) => {
             <div className="product__amount">quantity:</div>
             <div className="product__amount py-2">{props.item.count}</div>
             <div className="flex w-full border border-black divide-x divide-black">
-              <button type="button" className="product__price px-4 py-2 w-full" >-</button>
-              <button type="button" className="product__price px-4 py-2 w-full">+</button>
+              <button type="button" className="product__price px-4 py-2 w-full" onClick={() => dispatch(deleteItem(props.item.id))}>-</button>
+              <button type="button" className="product__price px-4 py-2 w-full" onClick={() => dispatch(addItem(props.item.id))}>+</button>
             </div>
           </div>
           <div className="flex items-center flex-col">
